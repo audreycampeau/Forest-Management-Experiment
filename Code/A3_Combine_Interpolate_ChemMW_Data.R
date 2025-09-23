@@ -23,9 +23,9 @@ library(tidyverse)
 #_________________________________________________________________________________________________
 # Open general water chemistry database (from second batch of data)
 
-
 #Open General Chemistry database
-chemistry=read_xlsx("Input/Trollberget data - 2024-04-12.xlsx", sheet=1)
+#chemistry=read_xlsx("Input/Trollberget data - 2024-04-12.xlsx", sheet=1)
+chemistry=read_xlsx("Input/Trollberget data - 2025-08-11.xlsx", sheet=2)
 chemistry$Date=as.Date(chemistry$Date)
 chemistry[,3:26]=sapply(chemistry[,3:26], as.numeric)
 

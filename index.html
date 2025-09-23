@@ -8,7 +8,7 @@
 
 <meta name="author" content="Audrey Campeau">
 <meta name="author" content="A. Zannella and M. Wallin">
-<meta name="dcterms.date" content="2025-08-22">
+<meta name="dcterms.date" content="2025-09-15">
 
 <title>Forest manipulation experiment reveals divergent controls on the sources and age of lateral DOC and CO₂ export</title>
 <style>
@@ -158,7 +158,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 22, 2025</p>
+      <p class="date">September 15, 2025</p>
     </div>
   </div>
   
@@ -466,28 +466,28 @@ div.csl-indent {
 <td style="text-align: left;">DC2</td>
 <td style="text-align: right;">39.14</td>
 <td style="text-align: right;">106.82</td>
-<td style="text-align: right;">2.17</td>
+<td style="text-align: right;">2.30</td>
 <td style="text-align: right;">104.01</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">DC4</td>
 <td style="text-align: right;">44.10</td>
 <td style="text-align: right;">106.70</td>
-<td style="text-align: right;">4.43</td>
+<td style="text-align: right;">3.82</td>
 <td style="text-align: right;">101.54</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">DC1</td>
 <td style="text-align: right;">21.40</td>
 <td style="text-align: right;">106.74</td>
-<td style="text-align: right;">1.66</td>
+<td style="text-align: right;">1.65</td>
 <td style="text-align: right;">104.47</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">DC3</td>
 <td style="text-align: right;">22.05</td>
 <td style="text-align: right;">105.86</td>
-<td style="text-align: right;">1.26</td>
+<td style="text-align: right;">1.42</td>
 <td style="text-align: right;">102.99</td>
 </tr>
 </tbody>
@@ -562,7 +562,7 @@ div.csl-indent {
 <td style="text-align: left;">DC1</td>
 <td style="text-align: left;">b</td>
 <td style="text-align: left;">a</td>
-<td style="text-align: left;">ac</td>
+<td style="text-align: left;">c</td>
 <td style="text-align: left;">b</td>
 </tr>
 <tr class="even">
@@ -630,23 +630,23 @@ Q data
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">stat_density_2d</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Treatment), <span class="at">geom =</span> <span class="st">"polygon"</span>, <span class="at">linewidth=</span><span class="dv">0</span>,</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                             <span class="at">alpha =</span> <span class="fl">0.2</span>)<span class="sc">+</span> </span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_abline</span>(<span class="at">intercept=</span><span class="dv">0</span>,<span class="at">slope=</span><span class="dv">1</span>, <span class="at">linetype=</span><span class="st">"dotted"</span>)<span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"glm"</span>, <span class="at">se=</span>F, <span class="fu">aes</span>(<span class="at">color=</span>Treatment), <span class="at">show.legend =</span> T)<span class="sc">+</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>            <span class="fu">stat_regline_equation</span>(<span class="at">label.y.npc =</span> <span class="st">"top"</span>, <span class="at">label.x.npc =</span> <span class="st">"left"</span>,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label =</span>  <span class="fu">paste</span>(..eq.label.., ..adj.rr.label.., </span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                               <span class="at">sep =</span> <span class="st">"~~~~"</span>), <span class="at">color =</span> Treatment), </span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                                <span class="at">show.legend =</span> F, <span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(treatments_colors))<span class="sc">+</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>            <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(treatments_colors))<span class="sc">+</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>            <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>              <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>            <span class="fu">labs</span>(<span class="at">x=</span><span class="fu">bquote</span>(<span class="st">"DOC (mg L"</span><span class="sc">^-</span><span class="dv">1</span><span class="sc">*</span><span class="st">")"</span>), </span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y=</span><span class="fu">bquote</span>(<span class="st">"CO"</span>[<span class="dv">2</span>]<span class="sc">*</span> <span class="st">" (mg L"</span><span class="sc">^-</span><span class="dv">1</span><span class="sc">*</span><span class="st">")"</span>))<span class="sc">+</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>              <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>), </span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">type =</span> <span class="st">"boxplot"</span>, <span class="at">groupColour =</span> <span class="cn">TRUE</span>, <span class="at">groupFill =</span> <span class="cn">TRUE</span> ) </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"glm"</span>, <span class="at">se=</span>F, <span class="fu">aes</span>(<span class="at">color=</span>Treatment), <span class="at">show.legend =</span> T)<span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            <span class="fu">stat_regline_equation</span>(<span class="at">label.y.npc =</span> <span class="st">"top"</span>, <span class="at">label.x.npc =</span> <span class="st">"left"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label =</span>  <span class="fu">paste</span>(..eq.label.., ..adj.rr.label.., </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                               <span class="at">sep =</span> <span class="st">"~~~~"</span>), <span class="at">color =</span> Treatment), </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                                <span class="at">show.legend =</span> F, <span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>            <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(treatments_colors))<span class="sc">+</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(treatments_colors))<span class="sc">+</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>            <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>              <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>            <span class="fu">labs</span>(<span class="at">x=</span><span class="fu">bquote</span>(<span class="st">"DOC (mg L"</span><span class="sc">^-</span><span class="dv">1</span><span class="sc">*</span><span class="st">")"</span>), </span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y=</span><span class="fu">bquote</span>(<span class="st">"CO"</span>[<span class="dv">2</span>]<span class="sc">*</span> <span class="st">" (mg L"</span><span class="sc">^-</span><span class="dv">1</span><span class="sc">*</span><span class="st">")"</span>))<span class="sc">+</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>              <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>), </span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">type =</span> <span class="st">"boxplot"</span>, <span class="at">groupColour =</span> <span class="cn">TRUE</span>, <span class="at">groupFill =</span> <span class="cn">TRUE</span> ) </span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a scatterplot to distinguish the grouping across treatment</span></span>
@@ -777,21 +777,21 @@ Q data
 <td style="text-align: right;">105.53</td>
 <td style="text-align: right;">26.48</td>
 <td style="text-align: right;">101.06</td>
-<td style="text-align: right;">1.95</td>
+<td style="text-align: right;">1.98</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Clearcut</td>
 <td style="text-align: right;">106.90</td>
 <td style="text-align: right;">39.28</td>
 <td style="text-align: right;">103.49</td>
-<td style="text-align: right;">2.15</td>
+<td style="text-align: right;">2.37</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Ditch cleaning</td>
 <td style="text-align: right;">106.49</td>
 <td style="text-align: right;">21.15</td>
 <td style="text-align: right;">104.30</td>
-<td style="text-align: right;">1.42</td>
+<td style="text-align: right;">1.39</td>
 </tr>
 </tbody>
 </table>
@@ -868,7 +868,7 @@ Q data
 <td style="text-align: left;">ab</td>
 <td style="text-align: left;">a</td>
 <td style="text-align: left;">a</td>
-<td style="text-align: left;">a</td>
+<td style="text-align: left;">b</td>
 </tr>
 </tbody>
 </table>
@@ -919,49 +919,50 @@ Interpretation
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                   ),</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y=</span>C_mgL, <span class="at">x=</span>q_md_filled<span class="sc">*</span><span class="dv">1000</span>, <span class="at">color=</span>Site_id))<span class="sc">+</span> </span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">1</span>, <span class="at">show.legend =</span> F)<span class="sc">+</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Carbon_species)<span class="sc">+</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span>F, <span class="fu">aes</span>(<span class="at">color=</span>Site_id), <span class="at">show.legend =</span> T)<span class="sc">+</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span>site_colors_6)<span class="sc">+</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_regline_equation</span>(<span class="at">label.y.npc =</span> <span class="st">"top"</span>, <span class="at">label.x.npc =</span> <span class="st">"left"</span>,</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">label =</span>  <span class="fu">paste</span>(..eq.label.., ..adj.rr.label.., </span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sep =</span> <span class="st">"~~~~"</span>), <span class="at">color =</span> Site_id), </span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                      <span class="at">show.legend =</span> F, <span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"q (mm/d)"</span>, </span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="fu">bquote</span>(<span class="st">"C (mg/L)"</span>))<span class="sc">+</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>, <span class="at">base_size=</span><span class="dv">8</span>)</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fl">0.2</span>, <span class="at">intercept =</span> <span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Carbon_species)<span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span>F, <span class="fu">aes</span>(<span class="at">color=</span>Site_id), <span class="at">show.legend =</span> T)<span class="sc">+</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span>site_colors_6)<span class="sc">+</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_regline_equation</span>(<span class="at">label.y.npc =</span> <span class="st">"top"</span>, <span class="at">label.x.npc =</span> <span class="st">"left"</span>,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">label =</span>  <span class="fu">paste</span>(..eq.label.., ..adj.rr.label.., </span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sep =</span> <span class="st">"~~~~"</span>), <span class="at">color =</span> Site_id), </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>                      <span class="at">show.legend =</span> F, <span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"q (mm/d)"</span>, </span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="fu">bquote</span>(<span class="st">"C (mg/L)"</span>))<span class="sc">+</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>, <span class="at">base_size=</span><span class="dv">8</span>)</span>
 <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Hydrological control over C concentration by treatment</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>hydro_resp_C_treatment<span class="ot">=</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(DC_Q <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>                     <span class="at">cols =</span> <span class="fu">c</span>(DOC_mgL, CO2_mgL),</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>                     <span class="at">names_to =</span> <span class="st">"Carbon_species"</span>,</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values_to =</span> <span class="st">"C_mgL"</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>                   ),</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y=</span>C_mgL, <span class="at">x=</span>q_md_filled<span class="sc">*</span><span class="dv">1000</span>, <span class="at">color=</span>Treatment))<span class="sc">+</span> </span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">1</span>, <span class="at">show.legend =</span> F)<span class="sc">+</span></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Carbon_species)<span class="sc">+</span></span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span>F, <span class="fu">aes</span>(<span class="at">color=</span>Treatment), <span class="at">show.legend =</span> T)<span class="sc">+</span></span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span>treatments_colors)<span class="sc">+</span></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_regline_equation</span>(<span class="at">label.y.npc =</span> <span class="st">"top"</span>, <span class="at">label.x.npc =</span> <span class="st">"left"</span>,</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">label =</span>  <span class="fu">paste</span>(..eq.label.., ..adj.rr.label.., </span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sep =</span> <span class="st">"~~~~"</span>), <span class="at">color =</span> Treatment), </span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>                      <span class="at">show.legend =</span> F, <span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"q (mm/d)"</span>, </span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="fu">bquote</span>(<span class="st">"C (mg/L)"</span>))<span class="sc">+</span></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>, <span class="at">base_size=</span><span class="dv">8</span>)</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Hydrological control over C concentration by treatment</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>hydro_resp_C_treatment<span class="ot">=</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(DC_Q <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>                     <span class="at">cols =</span> <span class="fu">c</span>(DOC_mgL, CO2_mgL),</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>                     <span class="at">names_to =</span> <span class="st">"Carbon_species"</span>,</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values_to =</span> <span class="st">"C_mgL"</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>                   ),</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y=</span>C_mgL, <span class="at">x=</span>q_md_filled<span class="sc">*</span><span class="dv">1000</span>, <span class="at">color=</span>Treatment))<span class="sc">+</span> </span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">1</span>, <span class="at">show.legend =</span> F)<span class="sc">+</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Carbon_species)<span class="sc">+</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span>F, <span class="fu">aes</span>(<span class="at">color=</span>Treatment), <span class="at">show.legend =</span> T)<span class="sc">+</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span>treatments_colors)<span class="sc">+</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_regline_equation</span>(<span class="at">label.y.npc =</span> <span class="st">"top"</span>, <span class="at">label.x.npc =</span> <span class="st">"left"</span>,</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">label =</span>  <span class="fu">paste</span>(..eq.label.., ..adj.rr.label.., </span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sep =</span> <span class="st">"~~~~"</span>), <span class="at">color =</span> Treatment), </span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>                      <span class="at">show.legend =</span> F, <span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"q (mm/d)"</span>, </span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="fu">bquote</span>(<span class="st">"C (mg/L)"</span>))<span class="sc">+</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>, <span class="at">base_size=</span><span class="dv">8</span>)</span>
 <span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="fu">ggarrange</span>(hydro_resp_C_site, </span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>          hydro_resp_C_treatment, </span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>          <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">common.legend =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="fu">ggarrange</span>(hydro_resp_C_site, </span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>          hydro_resp_C_treatment, </span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>          <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">common.legend =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
@@ -1105,29 +1106,29 @@ Interpretation
 <tr class="odd">
 <td style="text-align: left;">q_md_filled</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">95</td>
-<td style="text-align: right;">2.113</td>
-<td style="text-align: right;">0.149</td>
+<td style="text-align: right;">271</td>
+<td style="text-align: right;">1.807</td>
+<td style="text-align: right;">0.180000</td>
 <td style="text-align: left;"></td>
-<td style="text-align: right;">0.022</td>
+<td style="text-align: right;">0.007</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Site_id</td>
 <td style="text-align: right;">3</td>
-<td style="text-align: right;">95</td>
-<td style="text-align: right;">31.327</td>
-<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">271</td>
+<td style="text-align: right;">45.037</td>
+<td style="text-align: right;">0.000000</td>
 <td style="text-align: left;">*</td>
-<td style="text-align: right;">0.497</td>
+<td style="text-align: right;">0.333</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">q_md_filled:Site_id</td>
 <td style="text-align: right;">3</td>
-<td style="text-align: right;">95</td>
-<td style="text-align: right;">3.818</td>
-<td style="text-align: right;">0.012</td>
+<td style="text-align: right;">271</td>
+<td style="text-align: right;">5.742</td>
+<td style="text-align: right;">0.000803</td>
 <td style="text-align: left;">*</td>
-<td style="text-align: right;">0.108</td>
+<td style="text-align: right;">0.060</td>
 </tr>
 </tbody>
 </table>
@@ -1155,29 +1156,29 @@ Interpretation
 <tr class="odd">
 <td style="text-align: left;">q_md_filled</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">95</td>
-<td style="text-align: right;">2.113</td>
-<td style="text-align: right;">0.149</td>
+<td style="text-align: right;">271</td>
+<td style="text-align: right;">1.807</td>
+<td style="text-align: right;">0.180000</td>
 <td style="text-align: left;"></td>
-<td style="text-align: right;">0.022</td>
+<td style="text-align: right;">0.007</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Site_id</td>
 <td style="text-align: right;">3</td>
-<td style="text-align: right;">95</td>
-<td style="text-align: right;">31.327</td>
-<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">271</td>
+<td style="text-align: right;">45.037</td>
+<td style="text-align: right;">0.000000</td>
 <td style="text-align: left;">*</td>
-<td style="text-align: right;">0.497</td>
+<td style="text-align: right;">0.333</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">q_md_filled:Site_id</td>
 <td style="text-align: right;">3</td>
-<td style="text-align: right;">95</td>
-<td style="text-align: right;">3.818</td>
-<td style="text-align: right;">0.012</td>
+<td style="text-align: right;">271</td>
+<td style="text-align: right;">5.742</td>
+<td style="text-align: right;">0.000803</td>
 <td style="text-align: left;">*</td>
-<td style="text-align: right;">0.108</td>
+<td style="text-align: right;">0.060</td>
 </tr>
 </tbody>
 </table>

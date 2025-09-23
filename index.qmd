@@ -168,7 +168,7 @@ theme_set(theme_bw(base_size = 16))
 
 # Results
 
-## Hydrograph,  C concentrations and ¹⁴C-content across sites over time
+## Hydrograph, C concentrations and ¹⁴C-content across sites over time
 
 ```{r, warning=F, message=F, fig.height=4, label: fig-timeseries, fig.cap="Precipitation and discharge timeseries"}
 
@@ -439,7 +439,6 @@ density_14Cscatter_sites =
             stat_density_2d(aes(fill = Treatment), geom = "polygon", linewidth=0,
                              alpha = 0.2)+ 
             geom_point(size=1)+
-            geom_abline(intercept=0,slope=1, linetype="dotted")+
             geom_smooth(method="glm", se=F, aes(color=Treatment), show.legend = T)+
   
             stat_regline_equation(label.y.npc = "top", label.x.npc = "left",
@@ -456,6 +455,7 @@ density_14Cscatter_sites =
                    y=bquote("CO"[2]* " (mg L"^-1*")"))+
               theme(legend.position = "none"), 
             type = "boxplot", groupColour = TRUE, groupFill = TRUE ) 
+
 
 
 # Make a scatterplot to distinguish the grouping across treatment
@@ -589,6 +589,7 @@ hydro_resp_C_site=
                    ),
        aes(y=C_mgL, x=q_md_filled*1000, color=Site_id))+ 
   geom_point(size=1, show.legend = F)+
+    geom_abline(slope = 0.2, intercept = 0.3)+
   facet_wrap(~Carbon_species)+
   scale_x_log10()+
   scale_y_log10()+
