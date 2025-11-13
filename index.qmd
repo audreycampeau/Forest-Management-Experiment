@@ -634,7 +634,7 @@ plot_DOC_q = ggplot(DC_Q %>% filter(!is.na(DOC_14C_Modern)),
   scale_shape_manual(values = site_symbols) +
   scale_fill_manual(values = treatments_colors) + 
   scale_color_manual(values = treatments_colors) + 
-  scale_x_continuous(limits = c(0, 0.2)) +
+  scale_x_continuous(limits = c(0, 20)) +
   stat_regline_equation(
     label.y.npc = "top", label.x.npc = "left",
     aes(label = paste(..eq.label.., ..adj.rr.label.., sep = "~~~~"), 
@@ -655,7 +655,7 @@ plot_CO2_q = ggplot(DC_Q %>% filter(!is.na(CO2_14C_Modern)),
   scale_shape_manual(values = site_symbols) +
   scale_fill_manual(values = treatments_colors) + 
   scale_color_manual(values = treatments_colors) + 
-  scale_x_continuous(limits = c(0, 0.2)) +
+  scale_x_continuous(limits = c(0, 20)) +
   stat_regline_equation(
     label.y.npc = "top", label.x.npc = "left",
     aes(label = paste(..eq.label.., ..adj.rr.label.., sep = "~~~~"), 
@@ -702,7 +702,7 @@ DOC_14C_samples <- DC_Q %>%
 # Join with the ranked data
 samples_with_exceedance <- DOC_14C_samples %>%
   left_join(Q_DC3_rank %>% select(Date, P), by = "Date")
-
+#View(samples_with_exceedance)
 
 #Visualisation
 q_exceedance=ggplot(data = Q_DC3_rank) +
@@ -713,7 +713,7 @@ q_exceedance=ggplot(data = Q_DC3_rank) +
              size = 3, shape = 22) +
   #scale_x_log10() +
   scale_y_continuous(breaks = seq(0, 100, 25)) +
-  scale_x_continuous(limits=c(0,0.2))+
+  scale_x_continuous(limits=c(0,20))+
   scale_color_manual(values = treatments_colors) +
   scale_fill_manual(values = treatments_colors) +
   labs(y = "(%) exceedance probability",
@@ -1068,4 +1068,99 @@ ggplot(DC_Q %>% pivot_longer(
   labs(x="q (mm/d)", y=bquote("C (mg/L)"))+
   theme(legend.position = "top", base_size=8)
 
+
+```
+
+```{r}
+
+library(lubridate)
+
+# Extract rows with 14C data (either DOC or CO2)
+C14_data <- DC_Q %>%
+  filter(!is.na(DOC_14C_Modern) | !is.na(CO2_14C_Modern))
+
+# Overall date range
+date_summary <- C14_data %>%
+  summarise(
+    first_sampling = min(Date, na.rm = TRUE),
+    last_sampling = max(Date, na.rm = TRUE),
+    total_days = as.numeric(last_sampling - first_sampling),
+    total_samples = n()
+  )
+
+cat("Overall 14C sampling period:\n")
+print(date_summary)
+
+# Sample counts by site and type
+sample_counts <- C14_data %>%
+  group_by(Site_id) %>%
+  summarise(
+    n_total = n(),
+    n_DOC_14C = sum(!is.na(DOC_14C_Modern)),
+    n_CO2_14C = sum(!is.na(CO2_14C_Modern)),
+    n_both = sum(!is.na(DOC_14C_Modern) & !is.na(CO2_14C_Modern)),
+    first_date = min(Date),
+    last_date = max(Date)
+  )
+
+cat("\n14C samples by site:\n")
+print(sample_counts)
+
+# Calculate intervals between measurements for each site
+intervals_by_site <- C14_data %>%
+  arrange(Site_id, Date) %>%
+  group_by(Site_id) %>%
+  mutate(
+    days_since_last = as.numeric(Date - lag(Date))
+  ) %>%
+  summarise(
+    mean_interval_days = mean(days_since_last, na.rm = TRUE),
+    median_interval_days = median(days_since_last, na.rm = TRUE),
+    min_interval_days = min(days_since_last, na.rm = TRUE),
+    max_interval_days = max(days_since_last, na.rm = TRUE)
+  )
+
+cat("\nSampling intervals by site (days):\n")
+print(intervals_by_site)
+
+# More detailed view: all sampling dates and intervals
+detailed_intervals <- C14_data %>%
+  select(Date, Site_id, DOC_14C_Modern, CO2_14C_Modern) %>%
+  arrange(Date) %>%
+  mutate(
+    days_since_previous = as.numeric(Date - lag(Date)),
+    sample_type = case_when(
+      !is.na(DOC_14C_Modern) & !is.na(CO2_14C_Modern) ~ "Both",
+      !is.na(DOC_14C_Modern) ~ "DOC only",
+      !is.na(CO2_14C_Modern) ~ "CO2 only"
+    )
+  )
+
+cat("\nFirst 10 sampling events with intervals:\n")
+print(head(detailed_intervals, 10))
+
+# Summary statistics
+cat("\n=== SUMMARY ===\n")
+cat(sprintf("Total 14C samples collected: %d\n", nrow(C14_data)))
+cat(sprintf("Sampling period: %s to %s (%d days)\n", 
+            date_summary$first_sampling, 
+            date_summary$last_sampling,
+            date_summary$total_days))
+cat(sprintf("Average sampling interval: %.1f days\n", 
+            mean(detailed_intervals$days_since_previous, na.rm = TRUE)))
+cat(sprintf("Number of sites sampled: %d\n", n_distinct(C14_data$Site_id)))
+
+
+
+# Total counts by site and sample type
+total_by_type <- C14_data %>%
+  group_by(Site_id) %>%
+  summarise(
+    `14C-DOC samples` = sum(!is.na(DOC_14C_Modern)),
+    `14C-CO2 samples` = sum(!is.na(CO2_14C_Modern))
+  ) %>%
+  arrange(Site_id)
+
+cat("\nTotal 14C samples by type at each site:\n")
+print(total_by_type)
 ```

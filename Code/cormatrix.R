@@ -90,3 +90,6 @@ ggarrange(corplot_DOC,corplot_14DOC,
           corplot_CO2, corplot_14CO2,
           labels = "AUTO", nrow=2, ncol=2)
 
+round(range(DC_Q$q_md*1000, na.rm=T), digits = 5)
+round(range(DC_Q$DOC_14C_Modern, na.rm=T), digits =0)
+

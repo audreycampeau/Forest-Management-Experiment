@@ -20,10 +20,10 @@ Q_DC2=read.csv("Input/Q and Meteo/Q_C57_Daily.Time_Series_Data.2024031816461304.
 Q_DC3=read.csv("Input/Q and Meteo/Q_60_daily.Time_Series_Data.2024031816502188.csv", skip=11)
 #Q_DC1=read.csv("Input/Q and Meteo/Q_60_daily.Time_Series_Data.2024031816502188.csv", skip=11) # !!! Replace with DC3 (analogue treatment types)
 
-
+range (Q_DC2$Q, na.rm = T)
 
 #Data Source: SITES data Portal (retreived in April 2024)
-#Q units are m3 s1 (from Sites Data Portal)
+#Q units are L s1 (from Sites Data Portal)
         #Q_C2=read.csv("Input/Q and Meteo/SITES_WB-Q_SVB-VAB-C2_20050406-20231116_daily.csv", skip=24)
         #Q_C4=read.csv("Input/Q and Meteo/SITES_WB-Q_SVB_KKM-C4_20070529-20231113_L2_daily.csv", skip=23)
         #Q_C18=read.csv("Input/Q and Meteo/SITES_WB-Q_SVB_DEG-C18_20120425-20231123_L2_daily.csv", skip=22)
@@ -43,11 +43,11 @@ Q_DC3$Date=as.Date(Q_DC3$TimeStamp)
         #Q_C18$Date=as.Date(Q_C18$TIMESTAMP)
 
 
-#Convert all Q measurements to m3/d
+#Convert all Q measurements from L/s to mm3/d
 ## Remove all conversion and assume that Q data is already in m3/d (DC3 range from 0.0001 to 47, which makes sense)
 #Q_DC4$Q_m3d=Q_DC4$Q #/1000*60*60*24
-Q_DC2$Q_m3d=Q_DC2$Q #/1000*60*60*24
-Q_DC3$Q_m3d=Q_DC3$Q #/1000*60*60*24
+Q_DC2$Q_m3d=Q_DC2$Q /1000*60*60*24
+Q_DC3$Q_m3d=Q_DC3$Q /1000*60*60*24
 #Q_DC1$Q_m3d=Q_DC1$Q #/1000*60*60*24
 
         #Q_C2$Q_m3d=Q_C2$Q*60*60*24

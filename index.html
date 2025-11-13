@@ -8,7 +8,7 @@
 
 <meta name="author" content="Audrey Campeau">
 <meta name="author" content="A. Zannella and M. Wallin">
-<meta name="dcterms.date" content="2025-10-23">
+<meta name="dcterms.date" content="2025-11-13">
 
 <title>Forest manipulation experiment reveals divergent controls on the sources and age of lateral DOC and CO₂ export</title>
 <style>
@@ -166,7 +166,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 23, 2025</p>
+      <p class="date">November 13, 2025</p>
     </div>
   </div>
   
@@ -1443,7 +1443,7 @@ Interpretation
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> site_symbols) <span class="sc">+</span></span>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> treatments_colors) <span class="sc">+</span> </span>
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> treatments_colors) <span class="sc">+</span> </span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>)) <span class="sc">+</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">20</span>)) <span class="sc">+</span></span>
 <span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_regline_equation</span>(</span>
 <span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">label.y.npc =</span> <span class="st">"top"</span>, <span class="at">label.x.npc =</span> <span class="st">"left"</span>,</span>
 <span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..eq.label.., ..adj.rr.label.., <span class="at">sep =</span> <span class="st">"~~~~"</span>), </span>
@@ -1464,7 +1464,7 @@ Interpretation
 <span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> site_symbols) <span class="sc">+</span></span>
 <span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> treatments_colors) <span class="sc">+</span> </span>
 <span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> treatments_colors) <span class="sc">+</span> </span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>)) <span class="sc">+</span></span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">20</span>)) <span class="sc">+</span></span>
 <span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_regline_equation</span>(</span>
 <span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">label.y.npc =</span> <span class="st">"top"</span>, <span class="at">label.x.npc =</span> <span class="st">"left"</span>,</span>
 <span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(..eq.label.., ..adj.rr.label.., <span class="at">sep =</span> <span class="st">"~~~~"</span>), </span>
@@ -1511,7 +1511,7 @@ Interpretation
 <span id="cb25-76"><a href="#cb25-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Join with the ranked data</span></span>
 <span id="cb25-77"><a href="#cb25-77" aria-hidden="true" tabindex="-1"></a>samples_with_exceedance <span class="ot">&lt;-</span> DOC_14C_samples <span class="sc">%&gt;%</span></span>
 <span id="cb25-78"><a href="#cb25-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(Q_DC3_rank <span class="sc">%&gt;%</span> <span class="fu">select</span>(Date, P), <span class="at">by =</span> <span class="st">"Date"</span>)</span>
-<span id="cb25-79"><a href="#cb25-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-79"><a href="#cb25-79" aria-hidden="true" tabindex="-1"></a><span class="co">#View(samples_with_exceedance)</span></span>
 <span id="cb25-80"><a href="#cb25-80" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-81"><a href="#cb25-81" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualisation</span></span>
 <span id="cb25-82"><a href="#cb25-82" aria-hidden="true" tabindex="-1"></a>q_exceedance<span class="ot">=</span><span class="fu">ggplot</span>(<span class="at">data =</span> Q_DC3_rank) <span class="sc">+</span></span>
@@ -1522,7 +1522,7 @@ Interpretation
 <span id="cb25-87"><a href="#cb25-87" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">22</span>) <span class="sc">+</span></span>
 <span id="cb25-88"><a href="#cb25-88" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_x_log10() +</span></span>
 <span id="cb25-89"><a href="#cb25-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">25</span>)) <span class="sc">+</span></span>
-<span id="cb25-90"><a href="#cb25-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.2</span>))<span class="sc">+</span></span>
+<span id="cb25-90"><a href="#cb25-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>))<span class="sc">+</span></span>
 <span id="cb25-91"><a href="#cb25-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> treatments_colors) <span class="sc">+</span></span>
 <span id="cb25-92"><a href="#cb25-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> treatments_colors) <span class="sc">+</span></span>
 <span id="cb25-93"><a href="#cb25-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"(%) exceedance probability"</span>,</span>
@@ -2175,6 +2175,221 @@ Interpretation
 <p><img src="index_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>👈 see code here</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract rows with 14C data (either DOC or CO2)</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>C14_data <span class="ot">&lt;-</span> DC_Q <span class="sc">%&gt;%</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(DOC_14C_Modern) <span class="sc">|</span> <span class="sc">!</span><span class="fu">is.na</span>(CO2_14C_Modern))</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Overall date range</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>date_summary <span class="ot">&lt;-</span> C14_data <span class="sc">%&gt;%</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_sampling =</span> <span class="fu">min</span>(Date, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">last_sampling =</span> <span class="fu">max</span>(Date, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_days =</span> <span class="fu">as.numeric</span>(last_sampling <span class="sc">-</span> first_sampling),</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_samples =</span> <span class="fu">n</span>()</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Overall 14C sampling period:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Overall 14C sampling period:</code></pre>
+</div>
+<details class="code-fold">
+<summary>👈 see code here</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(date_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+  first_sampling last_sampling total_days total_samples
+  &lt;date&gt;         &lt;date&gt;             &lt;dbl&gt;         &lt;int&gt;
+1 2020-03-12     2022-10-25           957            46</code></pre>
+</div>
+<details class="code-fold">
+<summary>👈 see code here</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample counts by site and type</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>sample_counts <span class="ot">&lt;-</span> C14_data <span class="sc">%&gt;%</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Site_id) <span class="sc">%&gt;%</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_total =</span> <span class="fu">n</span>(),</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_DOC_14C =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(DOC_14C_Modern)),</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_CO2_14C =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(CO2_14C_Modern)),</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_both =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(DOC_14C_Modern) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(CO2_14C_Modern)),</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_date =</span> <span class="fu">min</span>(Date),</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">last_date =</span> <span class="fu">max</span>(Date)</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">14C samples by site:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+14C samples by site:</code></pre>
+</div>
+<details class="code-fold">
+<summary>👈 see code here</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sample_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 7
+  Site_id n_total n_DOC_14C n_CO2_14C n_both first_date last_date 
+  &lt;fct&gt;     &lt;int&gt;     &lt;int&gt;     &lt;int&gt;  &lt;int&gt; &lt;date&gt;     &lt;date&gt;    
+1 DC1          12        12        11     11 2020-03-12 2022-10-24
+2 DC2          10        10         9      9 2020-04-27 2022-10-24
+3 DC3          12        12        11     11 2020-03-12 2022-10-25
+4 DC4          12        12        11     11 2020-03-12 2022-10-25</code></pre>
+</div>
+<details class="code-fold">
+<summary>👈 see code here</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate intervals between measurements for each site</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>intervals_by_site <span class="ot">&lt;-</span> C14_data <span class="sc">%&gt;%</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Site_id, Date) <span class="sc">%&gt;%</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Site_id) <span class="sc">%&gt;%</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">days_since_last =</span> <span class="fu">as.numeric</span>(Date <span class="sc">-</span> <span class="fu">lag</span>(Date))</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_interval_days =</span> <span class="fu">mean</span>(days_since_last, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_interval_days =</span> <span class="fu">median</span>(days_since_last, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_interval_days =</span> <span class="fu">min</span>(days_since_last, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_interval_days =</span> <span class="fu">max</span>(days_since_last, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Sampling intervals by site (days):</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Sampling intervals by site (days):</code></pre>
+</div>
+<details class="code-fold">
+<summary>👈 see code here</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(intervals_by_site)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  Site_id mean_interval_days median_interval_days min_interval_days
+  &lt;fct&gt;                &lt;dbl&gt;                &lt;dbl&gt;             &lt;dbl&gt;
+1 DC1                   86.9                   62                 3
+2 DC2                  101.                   112                 3
+3 DC3                   87                     63                 4
+4 DC4                   87                     63                 3
+# ℹ 1 more variable: max_interval_days &lt;dbl&gt;</code></pre>
+</div>
+<details class="code-fold">
+<summary>👈 see code here</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># More detailed view: all sampling dates and intervals</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>detailed_intervals <span class="ot">&lt;-</span> C14_data <span class="sc">%&gt;%</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Date, Site_id, DOC_14C_Modern, CO2_14C_Modern) <span class="sc">%&gt;%</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Date) <span class="sc">%&gt;%</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">days_since_previous =</span> <span class="fu">as.numeric</span>(Date <span class="sc">-</span> <span class="fu">lag</span>(Date)),</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sample_type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.na</span>(DOC_14C_Modern) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(CO2_14C_Modern) <span class="sc">~</span> <span class="st">"Both"</span>,</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.na</span>(DOC_14C_Modern) <span class="sc">~</span> <span class="st">"DOC only"</span>,</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.na</span>(CO2_14C_Modern) <span class="sc">~</span> <span class="st">"CO2 only"</span></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">First 10 sampling events with intervals:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+First 10 sampling events with intervals:</code></pre>
+</div>
+<details class="code-fold">
+<summary>👈 see code here</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(detailed_intervals, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   Date       Site_id DOC_14C_Modern CO2_14C_Modern days_since_previous
+   &lt;date&gt;     &lt;fct&gt;            &lt;dbl&gt;          &lt;dbl&gt;               &lt;dbl&gt;
+ 1 2020-03-12 DC3               98.0          101.                   NA
+ 2 2020-03-12 DC4              104.            99.3                   0
+ 3 2020-03-12 DC1              103.           104.                    0
+ 4 2020-04-27 DC2              106.            NA                    46
+ 5 2020-04-27 DC3              106.            NA                     0
+ 6 2020-04-27 DC4              106.            NA                     0
+ 7 2020-04-27 DC1              107.            NA                     0
+ 8 2020-08-27 DC3              105.           105.                  122
+ 9 2020-08-28 DC4              105.           102.                    1
+10 2020-08-28 DC1              106.           103.                    0
+# ℹ 1 more variable: sample_type &lt;chr&gt;</code></pre>
+</div>
+<details class="code-fold">
+<summary>👈 see code here</summary>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== SUMMARY ===</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== SUMMARY ===</code></pre>
+</div>
+<details class="code-fold">
+<summary>👈 see code here</summary>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Total 14C samples collected: %d</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">nrow</span>(C14_data)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total 14C samples collected: 46</code></pre>
+</div>
+<details class="code-fold">
+<summary>👈 see code here</summary>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Sampling period: %s to %s (%d days)</span><span class="sc">\n</span><span class="st">"</span>, </span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>            date_summary<span class="sc">$</span>first_sampling, </span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>            date_summary<span class="sc">$</span>last_sampling,</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>            date_summary<span class="sc">$</span>total_days))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sampling period: 2020-03-12 to 2022-10-25 (957 days)</code></pre>
+</div>
+<details class="code-fold">
+<summary>👈 see code here</summary>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Average sampling interval: %.1f days</span><span class="sc">\n</span><span class="st">"</span>, </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">mean</span>(detailed_intervals<span class="sc">$</span>days_since_previous, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average sampling interval: 21.3 days</code></pre>
+</div>
+<details class="code-fold">
+<summary>👈 see code here</summary>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Number of sites sampled: %d</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">n_distinct</span>(C14_data<span class="sc">$</span>Site_id)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of sites sampled: 4</code></pre>
+</div>
+<details class="code-fold">
+<summary>👈 see code here</summary>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Total counts by site and sample type</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>total_by_type <span class="ot">&lt;-</span> C14_data <span class="sc">%&gt;%</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Site_id) <span class="sc">%&gt;%</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">14C-DOC samples</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(DOC_14C_Modern)),</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">14C-CO2 samples</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(CO2_14C_Modern))</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Site_id)</span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Total 14C samples by type at each site:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Total 14C samples by type at each site:</code></pre>
+</div>
+<details class="code-fold">
+<summary>👈 see code here</summary>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(total_by_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  Site_id `14C-DOC samples` `14C-CO2 samples`
+  &lt;fct&gt;               &lt;int&gt;             &lt;int&gt;
+1 DC1                    12                11
+2 DC2                    10                 9
+3 DC3                    12                11
+4 DC4                    12                11</code></pre>
 </div>
 </div>
 
