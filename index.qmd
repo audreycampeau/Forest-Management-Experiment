@@ -1,5 +1,5 @@
 ---
-title: "Forest manipulation experiment reveals divergent controls on the sources and age of lateral DOC and CO₂ export"
+title: "Forest management experiment reveals divergent controls on the sources and age of lateral DOC and CO₂ export in boreal streams"
 author:
   - name: Audrey Campeau
     affiliation: Université de Montréal & SLU
@@ -128,8 +128,10 @@ DC_Q$Date <- as.Date(DC_Q$Date)
 # Remove one oulier 14C-CO2 140%modern at C2 once. 
 DC_Q$CO2_14C_Modern= ifelse(DC_Q$CO2_14C_Modern >130, NA, DC_Q$CO2_14C_Modern)
 
+
 # Order factors site pairs 
-DC_Q$Site_id <- factor(DC_Q$Site_id, 
+
+  DC_Q$Site_id <- factor(DC_Q$Site_id, 
                        levels = c("C2", "C1", "DC1", "DC2", "DC3","DC4"))
 
 #Code lines to exclude C2 and C1 (pristine control sites) from analysis 
@@ -279,7 +281,6 @@ ggarrange(  timeserie_DOC,
 
 
 
-
 ```
 
 #### Dunn's test \| ¹⁴C and \[C\] \~ Site
@@ -387,7 +388,7 @@ Is the radiocarbon age or concentration of DOC and CO~2~ controled by runoff, an
   facet_grid(Carbon_species~Site_id, scale="free_y")+  
     
   scale_shape_manual(values=c(site_symbols))+
-  scale_x_log10()+
+  scale_x_log10(limits = c(0.02, 30))+
   scale_y_log10()+
   scale_color_manual(values=treatments_colors)+
   scale_fill_manual(values=treatments_colors)+
