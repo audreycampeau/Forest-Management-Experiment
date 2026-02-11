@@ -545,6 +545,7 @@ knitr::kable(DC_Q_DC1and3  %>%  anova_test(DOC_mgL ~ CO2_mgL_filled*Treatment),
 
 ```{r,warning =F, message=F}
 # Calculate medians for each variable by Site_id
+range (DC_Q$q_md, na.rm=T)*1000
 range (DC_Q$CO2_14C_Modern, na.rm=T)
 range (DC_Q$DOC_14C_Modern, na.rm=T)
 round(range(c(DC_Q$CO2_14C_Modern-DC_Q$DOC_14C_Modern), na.rm=T),0)
@@ -1072,7 +1073,9 @@ ggplot(DC_Q %>% pivot_longer(
 
 ```
 
-```{r}
+# Summary tables
+
+```{r,warning=F, message=F, echo=T}
 
 library(lubridate)
 
