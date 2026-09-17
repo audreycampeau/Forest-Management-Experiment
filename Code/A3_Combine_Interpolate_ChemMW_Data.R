@@ -33,19 +33,18 @@ chemistry[,3:26]=sapply(chemistry[,3:26], as.numeric)
 # Calculate excess deuterieum (Index of evaporation)
 chemistry$dexcess= chemistry$d2H - (8*chemistry$d18O)
 
-
+unique(chemistry$Site_id)
 
 
 #_________________________________________________________________________________________________
 # Open results from Marcus' DIC calculations (from Third batch of data)
+# I manually added the C1 and C2 data from Marcus into the trollberget dataset. The following steps are for the other DC sites
 
 DIC_MW=read_xlsx("Input/DC&C_Trollberget_GHG_data_AZ.xlsx", sheet=1)
 DIC_MW$Date=as.Date(DIC_MW$Date)
 DIC_MW=DIC_MW[,c(1:2, 4:8)] # Erase the last two columns that contained Marcus comment
 DIC_MW$Date_MW=DIC_MW$Date #Copy Marcus Date
 colnames(DIC_MW)=c("Site_id", "Date","pH_MW","WT_MW","DIC_mgL_MW","CO2_mgL_MW", "CH4_ugL_MW","Date_MW")
-
-
 
 
 #_________________________________________________________________________________________________
@@ -112,6 +111,13 @@ DC1_Q_Meteo_chem=left_join(filter(DC_Q_Meteo, Site_id=="DC1"),
                            filter(chemistry_DIC_MW_cleaned, Site_id == "DC1"),
                            by = 'Date', suffix = c( "", "_chem"))
 
+C1_Q_Meteo_chem=left_join(filter(DC_Q_Meteo, Site_id=="C1"), 
+                           filter(chemistry_DIC_MW_cleaned, Site_id == "C1"),
+                           by = 'Date', suffix = c( "", "_chem"))
+
+C2_Q_Meteo_chem=left_join(filter(DC_Q_Meteo, Site_id=="C2"), 
+                           filter(chemistry_DIC_MW_cleaned, Site_id == "C2"),
+                           by = 'Date', suffix = c( "", "_chem"))
 
 
 
@@ -132,6 +138,8 @@ DC1_Q_Meteo_chem <- fill_co2_data(DC1_Q_Meteo_chem)
 DC2_Q_Meteo_chem <- fill_co2_data(DC2_Q_Meteo_chem)
 DC3_Q_Meteo_chem <- fill_co2_data(DC3_Q_Meteo_chem)
 DC4_Q_Meteo_chem <- fill_co2_data(DC4_Q_Meteo_chem)
+C1_Q_Meteo_chem <- fill_co2_data(C1_Q_Meteo_chem)
+C2_Q_Meteo_chem <- fill_co2_data(C2_Q_Meteo_chem)
 
 
 
@@ -149,6 +157,8 @@ DC1_Q_Meteo_chem <- fill_DIC_data(DC1_Q_Meteo_chem)
 DC2_Q_Meteo_chem <- fill_DIC_data(DC2_Q_Meteo_chem)
 DC3_Q_Meteo_chem <- fill_DIC_data(DC3_Q_Meteo_chem)
 DC4_Q_Meteo_chem <- fill_DIC_data(DC4_Q_Meteo_chem)
+C1_Q_Meteo_chem <- fill_DIC_data(C1_Q_Meteo_chem)
+C2_Q_Meteo_chem <- fill_DIC_data(C2_Q_Meteo_chem)
 
 
 #Create a function to fill the NA's in Krycklan basic chemistry  monitoring data 
@@ -172,6 +182,8 @@ DC1_Q_Meteo_chem <- fill_multiple_columns(DC1_Q_Meteo_chem, columns_to_fill)
 DC2_Q_Meteo_chem <- fill_multiple_columns(DC2_Q_Meteo_chem, columns_to_fill)
 DC3_Q_Meteo_chem <- fill_multiple_columns(DC3_Q_Meteo_chem, columns_to_fill)
 DC4_Q_Meteo_chem <- fill_multiple_columns(DC4_Q_Meteo_chem, columns_to_fill)
+C1_Q_Meteo_chem <- fill_multiple_columns(C1_Q_Meteo_chem, columns_to_fill)
+C2_Q_Meteo_chem <- fill_multiple_columns(C2_Q_Meteo_chem, columns_to_fill)
 
 
 

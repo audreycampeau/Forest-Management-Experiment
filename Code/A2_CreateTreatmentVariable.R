@@ -67,21 +67,37 @@ DC4_Q_Meteo =DC4_Q_Meteo %>%
     between(Date, as.Date("2021-09-14"), as.Date("2023-10-25")) ~ "2yrPostHarvest"
   ))
 
+C2_Q_Meteo =C2_Q_Meteo %>%
+  mutate(Treatment = case_when(
+    between(Date, as.Date("2018-12-18"), as.Date("2020-07-14")) ~ "Reference",
+    between(Date, as.Date("2020-07-15"), as.Date("2021-09-13")) ~ "Reference",
+    between(Date, as.Date("2021-09-14"), as.Date("2023-10-25")) ~ "Reference"
+  ))
+
+C1_Q_Meteo =C1_Q_Meteo %>%
+  mutate(Treatment = case_when(
+    between(Date, as.Date("2018-12-18"), as.Date("2020-07-14")) ~ "Reference",
+    between(Date, as.Date("2020-07-15"), as.Date("2021-09-13")) ~ "Reference",
+    between(Date, as.Date("2021-09-14"), as.Date("2023-10-25")) ~ "Reference"
+  ))
 
 
 # Combine the four DC_Q_Meteo data frames
 DC_Q_Meteo=rbind(DC1_Q_Meteo, 
                  DC2_Q_Meteo, 
                  DC3_Q_Meteo, 
-                 DC4_Q_Meteo)
+                 DC4_Q_Meteo,
+                 C2_Q_Meteo,
+                 C1_Q_Meteo)
 
 # Format to factor Site_id and Treatment
 DC_Q_Meteo$Site_id=as.factor(DC_Q_Meteo$Site_id)
 DC_Q_Meteo$Treatment=as.factor(DC_Q_Meteo$Treatment)
 
+
 #Order factors
 DC_Q_Meteo$Treatment <- factor(DC_Q_Meteo$Treatment, #reorder the treatment types so they are in the right sequence
-                         levels = c("PreDisturbance", "PostHarvest", "PostDrainage", "2yrPostHarvest"))
+                         levels = c("Reference", "PreDisturbance", "PostHarvest", "PostDrainage", "2yrPostHarvest"))
 
 
 
@@ -89,5 +105,6 @@ DC_Q_Meteo$Treatment <- factor(DC_Q_Meteo$Treatment, #reorder the treatment type
 saveRDS(DC_Q_Meteo, "Output/Data/DC_Q_Meteo.rds")
 
 ggplot(DC_Q_Meteo, aes(x=Date, y=q_int_mmd, color=Treatment))+
-  geom_point()
+  geom_point()+
+  facet_wrap(~Site_id)
 
