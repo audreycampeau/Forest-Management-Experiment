@@ -356,7 +356,7 @@ knitr::kable(combined_dunns_FC_DC,
              caption = "Dunn's test grouping letters by treatment — FC_DC sites")
 ```
 
-## Variance partitionning (Site vs Treatment)
+### Variance partitionning (Site vs Treatment)
 
 ```{r, warning =F, message=F}
 
@@ -839,26 +839,27 @@ ggsave("Output/Figures/Figure5_14C_q_scatters.pdf", plot =combined_14C_q,
 
 ```
 
+### Linear Regression Outputs
+
 ```{r, warning =F, message=FALSE}
 
 
 # --- Linear regression tables ---
 
-extract_lm_results_14C <- function(y_var) { #site_pair
+extract_lm_results_14C <- function(y_var) {
   DC_Q %>%
-    #filter(Site_pairs == site_pair) %>%
+    filter(!is.na(.data[[y_var]]), !is.na(q_int_mmd)) %>%
     group_by(Treatment) %>%
     group_map(~ {
       model <- lm(.x[[y_var]] ~ .x$q_int_mmd)
       s <- summary(model)
       coefs <- coef(model)
-      ci <- confint(model, level = 0.95)   # row 1 = intercept, row 2 = slope
+      ci <- confint(model, level = 0.95)
       
       f <- s$fstatistic
       p_val <- if (!is.null(f)) pf(f[1], f[2], f[3], lower.tail = FALSE) else NA
       
       tibble(
-        #Site_pair  = site_pair,
         Treatment  = .y$Treatment,
         Response   = y_var,
         Intercept  = round(coefs[1], 3),
@@ -869,7 +870,7 @@ extract_lm_results_14C <- function(y_var) { #site_pair
         Slope_CIhigh     = round(ci[2, 2], 3),
         R2_adj     = round(s$adj.r.squared, 3),
         P_value    = signif(p_val, 3),
-        n          = nrow(.x)
+        n          = nobs(model)
       )
     }) %>%
     bind_rows()
@@ -886,25 +887,6 @@ lm_14C_results <- bind_rows(
 knitr::kable(lm_14C_results,
              caption = "Linear regression results: 14C ~ discharge by treatment and site pair")
 
-
-# --- ANCOVA tables ---
-
-# 14C-DOC
-knitr::kable(
-  DC_Q %>%
-    filter( !is.na(DOC_14C_Modern)) %>% #Site_pairs == "FC",
-    anova_test(DOC_14C_Modern ~ q_int_mmd * Treatment),
-  caption = "ANCOVA results: 14C-DOC ~ discharge × Treatment"
-)
-
-
-# 14C-CO2
-knitr::kable(
-  DC_Q %>%
-    filter( !is.na(CO2_14C_Modern)) %>% #Site_pairs == "FC",
-    anova_test(CO2_14C_Modern ~ q_int_mmd * Treatment),
-  caption = "ANCOVA results: 14C-CO2 ~ discharge × Treatment"
-)
 
 ```
 
@@ -933,44 +915,41 @@ knitr::kable(DC_Q  %>%  anova_test(CO2_14C_Modern ~ q_int_mmd*Treatment),
 
 ```{r, warning = F, message = F}
 # ---- Mixed-effects robustness check: 14C-DOC ~ discharge x Treatment, with Site as random effect ----
-# install.packages(c("lme4", "lmerTest", "broom.mixed"))  # run once if not already installed
+
 library(lme4)
-library(lmerTest)     # adds Type III F-tests (Satterthwaite df) on top of lme4's lmer()
-library(broom.mixed)  # tidy() for mixed-model output, parallel to broom::tidy() for lm()
+library(lmerTest)     # adds Type III F-tests 
+library(broom.mixed)  # tidy() for mixed-model output
 
 # Use sum-to-zero contrasts so Type III tests below match how rstatix::anova_test()
 # computes your existing ANCOVA table (avoids misleading Type III SS with treatment contrasts).
-# Reset back to defaults after, since options() are global for the whole document.
+# Reset back to defaults after.
 old_contrasts <- options("contrasts")
 options(contrasts = c("contr.sum", "contr.poly"))
 
-# Core 4 treatment catchments only, dropping the 2 reference sites (DC_Q_noRef already
-# does this) and dropping now-unused factor levels so they don't interfere with the model.
+#Preselect variables
 DC_Q_mixed <- DC_Q %>%
   filter(!is.na(DOC_14C_Modern), !is.na(q_int_mmd)) %>%
   mutate(Treatment_3class = droplevels(Treatment_3class),
          Site_id = droplevels(Site_id))
 
-# --- Fixed-effects-only model, i.e. your existing ANCOVA, refit here for direct comparison ---
+# --- ANCOVA Fixed-effects-only model, refit for direct comparison ---
 ancova_fixed <- lm(DOC_14C_Modern ~ q_int_mmd * Treatment_3class, data = DC_Q_mixed)
 
-# --- Mixed-effects model: same fixed-effects structure, + random intercept per Site_id ---
+# --- Mixed-effects model: same fixed-effects structure, but adding the + random intercept per Site_id ---
 mm_DOC_q <- lmer(DOC_14C_Modern ~ q_int_mmd * Treatment_3class + (1 | Site_id),
                  data = DC_Q_mixed)
 
-# Check fit quality -- TRUE means singular fit (see note above)
+# Check fit quality -- TRUE means singular fit (mixed effect model can't distinguish the between-site variance from zero, not enough groups to pick up an effect) - RESULT FALSE 
 isSingular(mm_DOC_q)
 
-# --- Mixed-model ANCOVA table: directly comparable to your existing ANCOVA table ---
+# --- Mixed-model ANCOVA table to compare with previous ANCOVA table ---
 knitr::kable(anova(mm_DOC_q, type = 3),
-             caption = "Mixed-effects ANCOVA: 14C-DOC ~ discharge x Treatment, Site as random intercept")
+             caption = "Mixed-effects model: 14C-DOC ~ discharge x Treatment, Site as random intercept")
 
 # --- Is the random effect (Site) actually needed? ---
 # Likelihood-ratio test: mixed model vs. the fixed-effects-only model above.
-# Significant -> samples are meaningfully clustered by site; the plain ANCOVA risked
-#   overstating significance, and this result should be reported.
-# Non-significant -> clustering by site is not detectable with this data, supporting
-#   the original ANCOVA as an adequate approach.
+# Significant -> samples are meaningfully clustered by site; the plain ANCOVA risked overstating significance
+# Non-significant -> clustering by site is not detectable with this data, supporting, the original ANCOVA as an adequate approach.
 ranova(mm_DOC_q)
 
 # --- Fixed-effect estimates, for a clean table alongside your existing lm_14C_results ---
@@ -1483,81 +1462,70 @@ ggsave("Output/Figures/SupFigure_hydrogram.pdf", plot =hydrogram, height = 7, wi
 ## Correlation matrix
 
 ```{r, warning=F, message=F,fig.height=6, fig.width =6, fig.cap="Correlation matrix Stream water chemistry timeseries"}
-
-# Correlation matrix for DOC concentration across sites over time
-DC_wide_DOC <- DC_Q %>%
-  select(Date, Site_id, DOC_mgL) %>%
-  filter(!is.na(DOC_mgL)) %>%  # Remove NA values first
-  group_by(Date, Site_id) %>%
-  summarise(DOC_mgL = mean(DOC_mgL, na.rm = TRUE), .groups = 'drop') %>%  # Take mean if duplicates
-  pivot_wider(names_from = Site_id, 
-              values_from = DOC_mgL,
-              names_prefix = "")
-
-cor_matrix_DOC <- cor(DC_wide_DOC[, -1], 
-                      method = "spearman", 
-                      use = "pairwise.complete.obs")
+library(psych) 
 
 
-# Correlation matrix for CO2 concentration across sites over time
-DC_wide_CO2 <- DC_Q %>%
-  select(Date, Site_id, CO2_mgL) %>%
-  filter(!is.na(CO2_mgL)) %>%  # Remove NA values first
-  group_by(Date, Site_id) %>%
-  summarise(CO2_mgL = mean(CO2_mgL, na.rm = TRUE), .groups = 'drop') %>%  # Take mean if duplicates
-  pivot_wider(names_from = Site_id, 
-              values_from = CO2_mgL,
-              names_prefix = "")
+# ============================================================
+# Spearman correlation matrix (r + p + 95% CI) for one variable across sites
+# ============================================================
+compute_site_corr <- function(data, value_col) {
+  wide <- data %>%
+    select(Date, Site_id, {{ value_col }}) %>%
+    filter(!is.na({{ value_col }})) %>%                                          # remove NAs first
+    group_by(Date, Site_id) %>%
+    summarise(value = mean({{ value_col }}, na.rm = TRUE), .groups = "drop") %>% # mean if duplicates
+    pivot_wider(names_from = Site_id, values_from = value)
 
-cor_matrix_CO2 <- cor(DC_wide_CO2[, -1], 
-                      method = "spearman", 
-                      use = "pairwise.complete.obs")
+  corr <- psych::corr.test(wide[, -1],
+                            method = "spearman",
+                            use    = "pairwise",
+                            adjust = "none")   # switch to "holm" for multiple-comparison correction
+
+  list(
+    wide       = wide,     # pivoted data, in case you want to inspect it
+    cor_matrix = corr$r,   # same as your old cor_matrix_XXX
+    p_matrix   = corr$p,   # matrix of p-values, feeds ggcorrplot's p.mat
+    ci_table   = corr$ci   # tidy table: one row per site pair (lower / r / upper / p)
+  )
+}
+
+# Run it once per variable — pass the column name unquoted, like the
+# original select()/filter() calls did
+site_corr <- list(
+  DOC     = compute_site_corr(DC_Q, DOC_mgL),
+  CO2     = compute_site_corr(DC_Q, CO2_mgL),
+  DOC_14C = compute_site_corr(DC_Q, DOC_14C_Modern),
+  CO2_14C = compute_site_corr(DC_Q, CO2_14C_Modern)
+)
+
+# View r / CI / p for every site pair, for every variable
+purrr::iwalk(site_corr, ~ {
+  cat("\n---", .y, "---\n")
+  print(.x$ci_table)
+})
+
+# Combine into one tidy table for a supplementary CSV
+ci_table_all <- purrr::imap_dfr(site_corr, function(res, name) {
+  res$ci_table %>%
+    mutate(pair = rownames(res$ci_table), variable = name)
+}) %>%
+  relocate(variable, pair)
 
 
-# Correlation matrix for 14CCO2 concentration across sites over time
-DC_wide_CO2_14C <- DC_Q %>%
-  select(Date, Site_id, CO2_14C_Modern) %>%
-  filter(!is.na(CO2_14C_Modern)) %>%  # Remove NA values first
-  group_by(Date, Site_id) %>%
-  summarise(CO2_14C = mean(CO2_14C_Modern, na.rm = TRUE), .groups = 'drop') %>%  # Take mean if duplicates
-  pivot_wider(names_from = Site_id, 
-              values_from = CO2_14C,
-              names_prefix = "")
-
-
-cor_matrix_CO2_14C <- cor(DC_wide_CO2_14C[, -1], 
-                      method = "spearman", 
-                      use = "pairwise.complete.obs")
-
-
-
-# Correlation matrix for 14C-DOC concentration across sites over time
-DC_wide_DOC_14C <- DC_Q %>%
-  select(Date, Site_id, DOC_14C_Modern) %>%
-  filter(!is.na(DOC_14C_Modern)) %>%  # Remove NA values first
-  group_by(Date, Site_id) %>%
-  summarise(DOC_14C = mean(DOC_14C_Modern, na.rm = TRUE), .groups = 'drop') %>%  # Take mean if duplicates
-  pivot_wider(names_from = Site_id, 
-              values_from = DOC_14C,
-              names_prefix = "")
-
-
-cor_matrix_DOC_14C <- cor(DC_wide_DOC_14C[, -1], 
-                      method = "spearman", 
-                      use = "pairwise.complete.obs")
+knitr::kable(ci_table_all, 
+             caption = "Spearman Correlation test outputs")
 
 
 #___________________________________________________________________________________
 
-corplot_DOC=ggcorrplot(cor_matrix_DOC, method="circle", type="upper", lab=T,insig = "blank",outline.col = "white", title = "[DOC]")
-corplot_14DOC=ggcorrplot(cor_matrix_DOC_14C, method="circle", type="upper", lab=T,insig = "blank",outline.col = "white", title = "14C-DOC")
-corplot_CO2=ggcorrplot(cor_matrix_CO2, method="circle", type="upper", lab=T,insig = "blank",outline.col = "white", title = "[CO2]")
-corplot_14CO2=ggcorrplot(cor_matrix_CO2_14C, method="circle", type="upper", lab=T,insig = "blank",outline.col = "white",title = "14C-CO2")
+corplot_DOC   <- ggcorrplot(site_corr$DOC$cor_matrix,     p.mat = site_corr$DOC$p_matrix,     method="circle", type="upper", lab=T, insig = "blank", outline.col = "white", title = "[DOC]")
+corplot_14DOC <- ggcorrplot(site_corr$DOC_14C$cor_matrix, p.mat = site_corr$DOC_14C$p_matrix, method="circle", type="upper", lab=T, insig = "blank", outline.col = "white", title = "14C-DOC")
+corplot_CO2   <- ggcorrplot(site_corr$CO2$cor_matrix,     p.mat = site_corr$CO2$p_matrix,     method="circle", type="upper", lab=T, insig = "blank", outline.col = "white", title = "[CO2]")
+corplot_14CO2 <- ggcorrplot(site_corr$CO2_14C$cor_matrix, p.mat = site_corr$CO2_14C$p_matrix, method="circle", type="upper", lab=T, insig = "blank", outline.col = "white", title = "14C-CO2")
 
-
-combined_cormatrix= ggarrange(corplot_DOC,corplot_14DOC,
-          corplot_CO2, corplot_14CO2,
-          labels = "AUTO", nrow=2, ncol=2)
+combined_cormatrix <- ggarrange(corplot_DOC, corplot_14DOC,
+                                 corplot_CO2, corplot_14CO2,
+                                 labels = "AUTO", nrow=2, ncol=2)
 
 combined_cormatrix
 
@@ -1901,4 +1869,52 @@ total_by_type <- C14_data %>%
 
 cat("\nTotal 14C samples by type at each site:\n")
 print(total_by_type)
+```
+
+### Testing significance of 14C gap between CO2 and DOC
+
+```{r}
+# --- Paired comparison: 14C-CO2 vs 14C-DOC (same water sample) ---
+
+# Keep only rows where both isotope values exist for that sample
+DC_Q_paired <- DC_Q %>%
+  filter(!is.na(DOC_14C_Modern), !is.na(CO2_14C_Modern))
+
+nrow(DC_Q_paired)  # sanity check -- should land on 40
+
+# Difference per sample (CO2 - DOC), matching the sign convention you
+# already use elsewhere in the doc (commented-out range() call)
+DC_Q_paired$Delta14C <- DC_Q_paired$CO2_14C_Modern - DC_Q_paired$DOC_14C_Modern
+
+# 1. Check normality of the DIFFERENCES (not the raw values) to pick the test
+shapiro.test(DC_Q_paired$Delta14C)
+
+mean_diff <- mean (DC_Q_paired$Delta14C, na.rm=T)
+# 2b. Wilcoxon signed-rank test (paired, non-parametric) -- run regardless
+# as a robustness check, or use instead if Shapiro flags non-normality
+wilcox_14C <- wilcox.test(DC_Q_paired$CO2_14C_Modern, DC_Q_paired$DOC_14C_Modern,
+                          paired = TRUE)
+wilcox_14C
+
+# Effect size for the Wilcoxon test
+library(rcompanion)
+r_data <- data.frame(
+  value = c(DC_Q_paired$CO2_14C_Modern, DC_Q_paired$DOC_14C_Modern),
+  group = factor(rep(c("CO2", "DOC"), each = nrow(DC_Q_paired)))
+)
+
+effect_size_wilc <- wilcoxonPairedR(x = r_data$value, g = r_data$group)
+
+# Summary table, kable-style to match the rest of the document
+knitr::kable(
+  data.frame(
+    n           = nrow(DC_Q_paired),
+    Mean_14C_DOC = round(mean(DC_Q_paired$DOC_14C_Modern), 2),
+    Mean_14C_CO2 = round(mean(DC_Q_paired$CO2_14C_Modern), 2),
+    Mean_diff   = round(mean_diff, 2),
+    p_wilcoxon  = signif(wilcox_14C$p.value, 3),
+    Cohens_d    = round(effect_size_wilc, 2)
+  ),
+  caption = "Paired comparison of 14C-CO2 vs 14C-DOC (n = 40 paired samples)"
+  )
 ```
