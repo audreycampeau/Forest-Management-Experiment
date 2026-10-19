@@ -99,6 +99,8 @@ ggplot(data=rbind(DC2_Q_Meteo, DC3_Q_Meteo, C2_Q_Meteo), aes(x=as.Date(Date), y=
 
 library(ggcorrplot)
 
+Q_Mosquera$Site=as.factor(Q_Mosquera$Site)
+
 DC_q <- Q_Mosquera %>%
   select(Date, Site, q_int_mmd) %>%
   pivot_wider(names_from = Site, 
