@@ -4,7 +4,7 @@ author:
   - name: Audrey Campeau
     affiliation: Université de Montréal & SLU
     orcid: 0000-0002-9113-8915
-  - name: Alberto Zannella , Karin Eklöf , Mark Garnett, Hjalmar Laudon, Eliza Maher Hasselquist, Virginia Mosquera, Marcus B. Wallin.
+  - name: 'Co-authors: Alberto Zannella , Karin Eklöf , Mark Garnett, Hjalmar Laudon, Eliza Maher Hasselquist, Virginia Mosquera, Marcus B. Wallin.'
 
 date: "`r Sys.Date()`"
 format:
@@ -66,9 +66,9 @@ library(ggcorrplot)
 
 
 #Open dataset
-DC_Q_all <- readRDS(file= "Output/Data/DC_Cs_Q_Meteo_chem_14C.rds")
-DC_Q_all$Date <- as.Date(DC_Q_all$Date)
-DC_Q <- DC_Q_all %>% filter(!Site_id %in% c("C1","C2"))
+DC_Q <- readRDS(file= "Output/Data/DC_Q_Meteo_chem_14C.rds")
+DC_Q$Date <- as.Date(DC_Q$Date)
+
 
 
 # Rename site Id to more meaningful names
